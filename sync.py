@@ -87,9 +87,10 @@ def mad(bot,trigger):
     bot.say('Please .ready up: ' + ", ".join(sync.readylist))
     sleep(60)
     if sync.readylist !=[]:
-        bot.say('Shit syncers: ' + ", ".join(sync.readylist))
-        sync.readylist=[]
-        sync.sync_on=0
+        if not sync.madtime.isAlive():
+            bot.say('Shit syncers: ' + ", ".join(sync.readylist))
+            sync.readylist=[]
+            sync.sync_on=0
 
 @willie.module.commands('ready')
 def ready(bot,trigger):
